@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Planner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .date-section {
+            margin-bottom: 20px;
+        }
+
+        .todo-section {
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Daily Planner</h1>
+            <p>Plan your day effectively!</p>
+        </header>
+        <main>
+            <section class="date-section">
+                <h2>Today's Date: <span id="current-date"></span></h2>
+            </section>
+            <section class="todo-section">
+                <h2>To-Do List</h2>
+                <form id="todo-form">
+                    <input type="text" id="todo-input" placeholder="Add a new task..." required>
+                    <button type="submit">Add</button>
+                </form>
+                <ul id="todo-list">
+                    <!-- To-Do items will be added here -->
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2023 Daily Planner</p>
+        </footer>
+    </div>
+
+    <script>
+        // Display current date
+        const currentDate = new Date().toLocaleDateString();
+        document.getElementById('current-date').textContent = currentDate;
+
+        // Add event listener to the form
+        document.getElementById('todo-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const todoInput = document.getElementById('todo-input');
+            const newTodo = todoInput.value;
+
+            // Create a new list item
+            const li = document.createElement('li');
+            li.textContent = newTodo;
+
+            // Add the new item to the list
+            document.getElementById('todo-list').appendChild(li);
+
+            // Clear the input
+            todoInput.value = '';
+        });
+    </script>
+</body>
+</html>
